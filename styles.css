@@ -317,7 +317,7 @@ ul{
         color: #fff;
     }
 
-/*-----------------madia query for less than 600 screen size--------------*/
+/*-----------------media query for less than 600 screen size--------------*/
 @media only screen and (max-width:600px){
     .row{
         text-align: center;
