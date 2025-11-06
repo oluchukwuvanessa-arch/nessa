@@ -1,157 +1,269 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <meta charset="UTF-8">
-       <title>Products-Nessa's</title>
-       <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css">
-    </head>
-    <body>
-        <div class="header">
-        <div class="container">
-    </div>
-        <div class="navbar">
-            <div class="logo">               
-                 <img src="images/Screenshot_22-10-2025_114914_stock.adobe.com.jpeg" width="125px">
-
-              </div>
-            <nav>
-                <ul id="MenuItems">
-                 <li><a href="">Home</a></li>
-                    <li><a href="">Products</a></li>
-                    <li><a href="">About</a></li>
-                     <li><a href="">Contact</a></li>
-                     <li><a href="">Account</a></li>
-                     </ul>
-            </nav>
-            <img src="images/Screenshot_22-10-2025_115018_www.bing.com.jpeg" width="30px"height="30px">
-            <img src="images/icon.jpg" class="menu-icon" onclick="menutoggle()">
-        </div>
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+        <title>Products-Nessa's</title>
+        <link rel="stylesheet" href="styles.css">
+        </head>
+        <body>
         
+            <div class="container">
         </div>
-        </div>
-       
-       <!------featured products--------->
-       <div class="small-container">
-        <h2 class="title"> Featured Products</h2>
-        <div class="row">
-            <div class="col-4">
-                <img src="images/a-pile-of-denim-jeans-in-different-shades-of-blue.jpg" >
-                <h4>Denim jeans</h4>
-                <div class="rating">
-                    
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
+            <div class="navbar">
+                <div class="logo">               
+                    <img src="images/Screenshot_22-10-2025_114914_stock.adobe.com.jpeg" width="125px">
 
+                </div>
+                <nav>
+                    <ul id="MenuItems">
+                    <li><a href="index.html">Home</a></li>
+                        <li><a href="product.html">Products</a></li>
+                        <li><a href="">About</a></li>
+                        <li><a href="">Contact</a></li>
+                        <li><a href="">Account</a></li>
+                        </ul>
+                </nav>
+                <img src="images/Screenshot_22-10-2025_115018_www.bing.com.jpeg" width="30px"height="30px">
+                <img src="images/icon.jpg" class="menu-icon" onclick="menutoggle()">
+            </div>
+                            </div>
+        
+                <div class="small-container">
+
+                    <div class="row row-2">
+                        <h2>All products</h2>
+                        <select>
+                            <option>Default shorting </option>
+                            <option>Short by price </option>
+                            <option>Short by popularity </option>
+                            <option>Short by rating </option>
+                            <option>Short by sale </option>
+                        </select>
+                    </div>
+                    <div class="row">
+                <div class="col-4">
+                    <img src="images/a-pile-of-denim-jeans-in-different-shades-of-blue.jpg" >
+                    <h4>Denim jeans</h4>
+                    <div class="rating">
+                        
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+
+                        
+                        </div>
+                    <p>#20,000</p>
+                </div>
+                <div class="col-4">
+                    <img src="images/pink coat.jpg.jpg" >
+                    <h4>pink coat</h4>
+                    <div class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
                     
                     </div>
-                <p>#20,000</p>
-            </div>
-             <div class="col-4">
-                <img src="images/pink coat.jpg.jpg" >
-                <h4>pink coat</h4>
-                <div class="rating">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                   
+                    <p>#24,200</p>
                 </div>
-                <p>#24,200</p>
-            </div>
-             <div class="col-4">
-                <img src="images/pink tee.jpg.jpg" >
-                <h4>pink tee</h4>
-                <div class="rating">
-                   <i class="fa-solid fa-star"></i>
+                <div class="col-4">
+                    <img src="images/pink tee.jpg.jpg" >
+                    <h4>pink tee</h4>
+                    <div class="rating">
                     <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                    </div>
+                    <p>#10,000</p>
                 </div>
-                <p>#10,000</p>
-            </div>
-             <div class="col-4">
-                <img src="images/ash suit.jpg.jpg" >
-                <h4>Female stylish suit</h4>
-                <div class="rating">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
+                <div class="col-4">
+                    <img src="images/ash suit.jpg.jpg" >
+                    <h4>Female stylish suit</h4>
+                    <div class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                    </div>
+                    <p>#40,000</p>
                 </div>
-                <p>#40,000</p>
-            </div>
-             
-             
-        </div>
-        </div>
-           
-      
-      
-    <!--------footer-->
-    <div class="footer">
-        <div class="container">
+            
             <div class="row">
-                <div class="footer-col-1">
-                    <h3>Download our app</h3>
-                    <p>Download App for Android and ios mobile phones</p>
-                    <div class="app-logo">
-                        <img src="images/google-play-and-apple-app-store-logos-22.png">
+            <div class="col-4">
+                    <img src="images/hang.jpg.jpg" >
+                    <h4>vintage</h4>
+                    <div class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                    </div>
+                    <p>#40,000</p>
+                </div>
+                <div class="col-4">
+                    <img src="images/person-stands-surrounded-by-willow-tree-leaves.jpg" >
+                    <h4>washed jean</h4>
+                    <div class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                    </div>
+                    <p>#40,000</p>
+                </div>
+                <div class="col-4">
+                    <img src="images/colorcode.jpg.jpg" >
+                    <h4>conture</h4>
+                    <div class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                    </div>
+                    <p>#40,000</p>
+                </div>
+                <div class="col-4">
+                    <img src="images/pile of denims.jpg.jpg" >
+                    <h4>Blue denim</h4>
+                    <div class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                    </div>
+                    <p>#40,000</p>
+                </div>
+                </div>
+                <div class="row">
+            <div class="col-4">
+                    <img src="images/md-salman-tWOz2_EK5EQ-unsplash.jpg" >
+                    <h4>Colored tees</h4>
+                    <div class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                    </div>
+                    <p>#40,000</p>
+                </div>
+                <div class="col-4">
+                    <img src="images/milada-vigerova-p8Drpg_duLw-unsplash.jpg" >
+                    <h4>knitted top</h4>
+                    <div class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                    </div>
+                    <p>#40,000</p>
+                </div>
+                <div class="col-4">
+                    <img src="images/md-salman-tWOz2_EK5EQ-unsplash.jpg" >
+                    <h4>Colored tees</h4>
+                    <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                    </div>
+                    <p>#40,000</p>
+                </div>
+                <div class="col-4">
+                    <img src="images/heather-ford-5gkYsrH_ebY-unsplash.jpg" >
+                    <h4>Winter outfit</h4>
+                    <div class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
                         
-                     </div>
-                   
-
+                    </div>
+                    <p>#40,000</p>
                 </div>
-                <div class="footer-col-2">
-                    <img src="images/Screenshot_22-10-2025_114914_stock.adobe.com.jpeg" >
-                    <p>Our purpose is to Sustainably make the pleasure And
-                        benefits of comfortable wears
-                    </p>
-                    
                 </div>
-                 <div class="footer-col-3">
-                    <h3>Useful links</h3>
-                    <ul>
-                        <li>coupons</li>
-                         <li>Blog post</li>
-                          <li>Return policy</li>
-                           <li>Join Afflicate</li>
-                    </ul>
-
+                <div class="page-btn">
+                    <span>1</span>
+                    <span>2</span>
+                    <span>3</span>
+                    <span>4</span>
+                    <span>&#8594;</span>
                 </div>
-                 <div class="footer-col-4">
-                    <h3>Follow us</h3>
-                    <ul>
-                        <li>Facebook</li>
-                         <li>instagram</li>
-                          <li>tiktok</li>
-                           <li>telegram</li>
-                    </ul>
-
-                </div>
-            </div>
-            <hr>
-            <p class="Copyright">Copyright 2025</p>
         </div>
-    </div>
-    <!---------js for toogle menu-->
-    <script>
-        var MenuItems =document.getElementById("MenuItems");
-        MenuItems.style.maxHeight ="0px";
-        function menutoggle() {
-            if( MenuItems.style.maxHeight =="0px")
-        {
-            MenuItems.style.maxHeight ="200px"
-        }
-        else
-        {
-          MenuItems.style.maxHeight ="0px";
-        }
-    }
+                
+                
+            </div>
+            </div>
+            
+        
+        
+        <!--------footer-->
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col-1">
+                        <h3>Download our app</h3>
+                        <p>Download App for Android and ios mobile phones</p>
+                        <div class="app-logo">
+                            <img src="images/google-play-and-apple-app-store-logos-22.png">
+                            
+                        </div>
+                    
 
-    </script>
-    </body>
-</html>
+                    </div>
+                    <div class="footer-col-2">
+                        <img src="images/Screenshot_22-10-2025_114914_stock.adobe.com.jpeg" >
+                        <p>Our purpose is to Sustainably make the pleasure And
+                            benefits of comfortable wears
+                        </p>
+                        
+                    </div>
+                    <div class="footer-col-3">
+                        <h3>Useful links</h3>
+                        <ul>
+                            <li>coupons</li>
+                            <li>Blog post</li>
+                            <li>Return policy</li>
+                            <li>Join Afflicate</li>
+                        </ul>
+
+                    </div>
+                    <div class="footer-col-4">
+                        <h3>Follow us</h3>
+                        <ul>
+                            <li>Facebook</li>
+                            <li>instagram</li>
+                            <li>tiktok</li>
+                            <li>telegram</li>
+                        </ul>
+
+                    </div>
+                </div>
+                <hr>
+                <p class="Copyright">Copyright 2025</p>
+            </div>
+        </div>
+        <!---------js for toogle menu-->
+        <script>
+            var MenuItems =document.getElementById("MenuItems");
+            MenuItems.style.maxHeight ="0px";
+            function menutoggle() {
+                if( MenuItems.style.maxHeight =="0px")
+            {
+                MenuItems.style.maxHeight ="200px"
+            }
+            else
+            {
+            MenuItems.style.maxHeight ="0px";
+            }
+            
+        }
+        
+
+        </script>
+        </body>
+    </html>

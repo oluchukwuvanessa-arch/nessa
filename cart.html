@@ -1,0 +1,178 @@
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+        <title>Products-Nessa's</title>
+        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css">
+       
+        </head>
+        <body>
+        
+            <div class="container">
+        </div>
+            <div class="navbar">
+                <div class="logo"> 
+                    <a href="cart.html" >             
+                    <img src="images/Screenshot_22-10-2025_114914_stock.adobe.com.jpeg" width="125px">
+                  </a> 
+                </div>
+                <nav>
+                    <ul id="MenuItems">
+                    <li><a href="index.html">Home</a></li>
+                        <li><a href="product.html">Products</a></li>
+                        <li><a href="">About</a></li>
+                        <li><a href="">Contact</a></li>
+                        <li><a href="">Account</a></li>
+                        <
+                        </ul>
+                </nav>
+                <img src="images/Screenshot_22-10-2025_115018_www.bing.com.jpeg" width="30px"height="30px">
+                <img src="images/icon.jpg" class="menu-icon" onclick="menutoggle()">
+            </div>               
+                </div>
+                
+        </div>
+                
+                
+            </div>
+            </div>
+            
+        <!---------------cart items details------------------>
+        <div class="small-container cart-page">
+            <table>
+                <tr>
+                    <th>product</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="cart-info">
+                            <img src="images/children.jpg" >
+                            <div>
+                                <p>Chilrden's</p>
+                                <small> Price:$4674</small>
+                                <a href=""> Remove</a>
+                            </div>
+                        </div>
+
+                    </td>
+                    <td><Input type="number" value="1"></td>
+                    <td>$100.00</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="cart-info">
+                            <img src="images/children.jpg" >
+                            <div>
+                                <p>Chilrden's</p>
+                                <small> Price:$4674</small>
+                                <a href=""> Remove</a>
+                            </div>
+                        </div>
+
+                    </td>
+                    <td><Input type="number" value="1"></td>
+                    <td>$100.00</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="cart-info">
+                            <img src="images/children.jpg" >
+                            <div>
+                                <p>Chilrden's</p>
+                                <small> Price:$4674</small>
+                                <a href=""> Remove</a>
+                            </div>
+                        </div>
+
+                    </td>
+                    <td><Input type="number" value="1"></td>
+                    <td>$100.00</td>
+                </tr>
+            </table>
+            <div class="total-price">
+                <table>
+                    <tr>
+                        <td>Subtotal</td>
+                        <td>$546</td>
+                    </tr>
+                    <tr>
+                        <td>Tax</td>
+                        <td>$456</td>
+                    </tr>
+                    <tr>
+                        <td>Total</td>
+                        <td>$200</td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+        <!--------footer-->
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col-1">
+                        <h3>Download our app</h3>
+                        <p>Download App for Android and ios mobile phones</p>
+                        <div class="app-logo">
+                            <img src="images/google-play-and-apple-app-store-logos-22.png">
+                            
+                        </div>
+                    
+
+                    </div>
+                    <div class="footer-col-2">
+                        <img src="images/Screenshot_22-10-2025_114914_stock.adobe.com.jpeg" >
+                        <p>Our purpose is to Sustainably make the pleasure And
+                            benefits of comfortable wears
+                        </p>
+                        
+                    </div>
+                    <div class="footer-col-3">
+                        <h3>Useful links</h3>
+                        <ul>
+                            <li>coupons</li>
+                            <li>Blog post</li>
+                            <li>Return policy</li>
+                            <li>Join Afflicate</li>
+                        </ul>
+
+                    </div>
+                    <div class="footer-col-4">
+                        <h3>Follow us</h3>
+                        <ul>
+                            <li>Facebook</li>
+                            <li>instagram</li>
+                            <li>tiktok</li>
+                            <li>telegram</li>
+                        </ul>
+
+                    </div>
+                </div>
+                <hr>
+                <p class="Copyright">Copyright 2025</p>
+            </div>
+        </div>
+        <!---------js for toogle menu-->
+        <script>
+            var MenuItems =document.getElementById("MenuItems");
+            MenuItems.style.maxHeight ="0px";
+            function menutoggle() {
+                if( MenuItems.style.maxHeight =="0px")
+            {
+                MenuItems.style.maxHeight ="200px"
+            }
+            else
+            {
+            MenuItems.style.maxHeight ="0px";
+            }
+        }
+        
+
+        </script>
+        </body>
+    </html>
