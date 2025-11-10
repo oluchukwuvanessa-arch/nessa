@@ -258,7 +258,7 @@ ul{
 }
 /*-----------------madia query for menu--------------*/
 
-@media only screen and (max-width:800px){
+  @media only screen and (max-width:800px){
     nav ul{
         position: absolute;
         top: 70px;
@@ -268,7 +268,7 @@ ul{
         overflow: hidden;
         transition: max-height 0.5s;
     }
-}
+ 
     nav ul li{
         display:block;
         margin-right:50px;
@@ -282,6 +282,7 @@ ul{
         display: block;
         cursor: pointer;
     }
+}
 
    /* ------------all products page-----------------*/
     .row-2{
