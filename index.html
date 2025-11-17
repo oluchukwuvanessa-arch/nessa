@@ -26,8 +26,9 @@
                      </ul>
             </nav>
             <!-------cart image is now clickable-->
-            <a href="cart.html">
-            <img src="images/Screenshot_22-10-2025_115018_www.bing.com.jpeg" width="30px"height="30px">
+            <a href="cart.html" id="cart-link" class="cart-link" aria-label="View cart">
+                <img src="images/Screenshot_22-10-2025_115018_www.bing.com.jpeg" width="30px" height="30px" alt="Cart">
+                <span id="cart-count" class="cart-count" aria-hidden="true">0</span>
             </a>
             <!-----Menu icon still works as a toggle-->
             <img src="images/icon.jpg" class="menu-icon" onclick="menutoggle()">
@@ -252,7 +253,7 @@
                     <i class="fa-regular fa-star"></i>
                 </div>
                 <img src="images/Screenshot_27-10-2025_101532_www.bing.com.jpeg">
-                <h3>Hope.D</h3>
+                <h3>Hope.D</h3>m
                 </div>
                  <div class="col-3">
                      <i class="fa-solid fa-quote-left"></i>
@@ -328,20 +329,123 @@
             <p class="Copyright">Copyright 2025</p>
         </div>
     </div>
+    <!-- Cart / Add-to-cart script -->
+    <script>
+        (function () {
+            // Utility: read/write cart from localStorage
+            function readCart() {
+                try {
+                    return JSON.parse(localStorage.getItem('cart') || '[]');
+                } catch (e) {
+                    return [];
+                }
+            }
+            function writeCart(cart) {
+                localStorage.setItem('cart', JSON.stringify(cart));
+            }
+
+            function updateBadge() {
+                var countEl = document.getElementById('cart-count');
+                if (!countEl) return;
+                var cart = readCart();
+                var totalQty = cart.reduce(function (s, item) { return s + (item.quantity || 0); }, 0);
+                countEl.textContent = totalQty;
+                countEl.style.display = totalQty > 0 ? 'inline-block' : 'none';
+            }
+
+            // Inject Add to Cart buttons for each product card (.col-4)
+            function injectButtons() {
+                var cards = document.querySelectorAll('.col-4');
+                cards.forEach(function (card) {
+                    // only add once
+                    if (card.querySelector('.add-to-cart')) return;
+                    var btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.className = 'add-to-cart';
+                    btn.textContent = 'Add to cart';
+
+                    // On click, read data from card: title, price, image
+                    btn.addEventListener('click', function () {
+                        var titleEl = card.querySelector('h4');
+                        var priceEl = card.querySelector('p');
+                        var imgEl = card.querySelector('img');
+                        if (!titleEl || !priceEl) return;
+                        var name = titleEl.textContent.trim();
+                        // strip non-digits from price and parse
+                        var priceText = priceEl.textContent || '';
+                        var priceNum = parseFloat(priceText.replace(/[^0-9\.]/g, '')) || 0;
+                        var img = imgEl ? imgEl.getAttribute('src') : '';
+
+                        var cart = readCart();
+                        var existing = cart.find(function (i) { return i.name === name && i.price === priceNum; });
+                        if (existing) {
+                            existing.quantity = (existing.quantity || 1) + 1;
+                        } else {
+                            cart.push({ name: name, price: priceNum, image: img, quantity: 1 });
+                        }
+                        writeCart(cart);
+                        updateBadge();
+                        // small feedback
+                        btn.textContent = 'Added ✓';
+                        setTimeout(function () { btn.textContent = 'Add to cart'; }, 900);
+                    });
+
+                    // append after price paragraph
+                    var price = card.querySelector('p');
+                    if (price) price.insertAdjacentElement('afterend', btn);
+                    else card.appendChild(btn);
+                });
+            }
+
+            // init
+            document.addEventListener('DOMContentLoaded', function () {
+                injectButtons();
+                updateBadge();
+            });
+
+            // expose for manual calls if needed
+            window._shop = { readCart: readCart, writeCart: writeCart, updateBadge: updateBadge };
+        })();
+    </script>
+
     <!---------js for toogle menu-->
     <script>
-        var MenuItems =document.getElementById("MenuItems");
-        MenuItems.style.maxHeight ="0px";
+        var MenuItems = document.getElementById("MenuItems");
+        MenuItems.style.maxHeight = "0px";
+        var menuIcon = document.querySelector('.menu-icon');
+
         function menutoggle() {
-            if( MenuItems.style.maxHeight =="0px")
-        {
-            MenuItems.style.maxHeight ="200px"
+            if (MenuItems.style.maxHeight === "0px") {
+                MenuItems.style.maxHeight = "200px";
+            } else {
+                MenuItems.style.maxHeight = "0px";
+            }
         }
-        else
-        {
-          MenuItems.style.maxHeight ="0px";
+
+        // Prevent clicks on the icon or inside the menu from bubbling up
+        if (menuIcon) {
+            menuIcon.addEventListener('click', function (e) { e.stopPropagation(); });
         }
-    }
+        if (MenuItems) {
+            MenuItems.addEventListener('click', function (e) { e.stopPropagation(); });
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function (e) {
+            if (MenuItems && MenuItems.style.maxHeight !== "0px") {
+                var target = e.target;
+                if (!MenuItems.contains(target) && !(menuIcon && menuIcon.contains(target))) {
+                    MenuItems.style.maxHeight = "0px";
+                }
+            }
+        });
+
+        // Close menu with Escape key
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && MenuItems && MenuItems.style.maxHeight !== "0px") {
+                MenuItems.style.maxHeight = "0px";
+            }
+        });
     </script>
     </body>
 </html>

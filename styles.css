@@ -152,25 +152,27 @@ small{
 .testimonial{
     padding-top: 100px;
 }
-.testimonial col-3{
+.testimonial .col-3{
     text-align: center;
-    padding: 40px 20px;
-    box-shadow: 0 0 20px 0px rgba(0,0,0,0.1);
+    padding: 24px 18px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
     cursor: pointer;
-    transition: transform 0.5s;
+    transition: transform 0.25s;
+    background: #fff;
+    border: 1px solid #f1f1f1;
+    border-radius: 8px;
 }
 
 .testimonial .col-3 img{
-    width: 50px;
-    margin-top: 20px;
+    width: 70px;
+    margin-top: 6px;
     border-radius: 50%;
-    
 }
 
 .testimonial .col-3:hover{
-transform: translateY(-10px);
+    transform: translateY(-6px);
 }
-.fa.fa-quote-left{
+.fa-quote-left{
     font-size: 34px;
     color: #ff523b;
 }
@@ -386,3 +388,36 @@ th:last-child{
 .cart-info p{
     display:none;
 }
+
+/* Add-to-cart button */
+.add-to-cart{
+    display: inline-block;
+    background: #ff523b;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 8px;
+}
+.add-to-cart:hover{ background:#e04732 }
+
+/* cart badge next to the cart icon */
+.cart-link{ position: relative; display:inline-block; }
+.cart-count{
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: #ff523b;
+    color: #fff;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+    line-height: 1;
+    display: none;
+}
+
+/* small adjustments for cart page */
+.cart-page img{ width:60px }
+.cart-page table td, .cart-page table th{ padding: 10px; border-bottom: 1px solid #eee }
+.cart-page input[type="number"]{ padding:6px }

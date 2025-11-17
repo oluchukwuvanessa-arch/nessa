@@ -1,175 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <meta charset="UTF-8">
-       <title>Nessa's| Ecommerce Website</title>
-       <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css">
-    </head>
-    <body>
-        <div class="header">
-        <div class="container">
-    </div>
-        <div class="navbar">
-            <div class="logo">               
-                 <img src="images/Screenshot_22-10-2025_114914_stock.adobe.com.jpeg" width="125px">
-
-              </div>
-            <nav>
-                <ul id="MenuItems">
-                 <li><a href="index.html">Home</a></li>
-                    <li><a href="product.html">Products</a></li>
-                    <li><a href="about.html">About</a></li>
-                     <li><a href="contact.html">Contact</a></li>
-                    
-                     </ul>
-            </nav>
-                <!-------cart image is now clickable-->
-            <a href="cart.html">
-            <img src="images/Screenshot_22-10-2025_115018_www.bing.com.jpeg" width="30px"height="30px">
-            </a>
-            <!-----Menu icon still works as a toggle-->
-            <img src="images/icon.jpg" class="menu-icon" onclick="menutoggle()">
-                </div>
-                 </div>
-        
-   
-            
-        <!---------------cart items details------------------>
-        <div class="small-container cart-page">
-            <table>
-                <tr>
-                    <th>product</th>
-                    <th>Quantity</th>
-                    <th>Subtotal</th>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="cart-info">
-                            <img src="images/children.jpg" >
-                            <div>
-                                <p>Chilrden's</p>
-                                <small> Price:$4674</small>
-                                <a href=""> Remove</a>
-                            </div>
-                        </div>
-
-                    </td>
-                    <td><Input type="number" value="1"></td>
-                    <td>$100.00</td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="cart-info">
-                            <img src="images/children.jpg" >
-                            <div>
-                                <p>Chilrden's</p>
-                                <small> Price:$4674</small>
-                                <a href=""> Remove</a>
-                            </div>
-                        </div>
-
-                    </td>
-                    <td><Input type="number" value="1"></td>
-                    <td>$100.00</td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="cart-info">
-                            <img src="images/children.jpg" >
-                            <div>
-                                <p>Chilrden's</p>
-                                <small> Price:$4674</small>
-                                <a href=""> Remove</a>
-                            </div>
-                        </div>
-
-                    </td>
-                    <td><Input type="number" value="1"></td>
-                    <td>$100.00</td>
-                </tr>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Your Cart - Nessa's Shop</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Your Cart</h1>
+        <div id="cart-root" class="small-container cart-page">
+            <p id="empty-msg">Your cart is empty.</p>
+            <table id="cart-table" style="width:100%; display:none; border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <th style="text-align:left">Product</th>
+                        <th>Price</th>
+                        <th>Qty</th>
+                        <th>Subtotal</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="cart-body"></tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3" style="text-align:right">Total:</td>
+                        <td id="cart-total">#0</td>
+                        <td></td>
+                    </tr>
+                </tfoot>
             </table>
-            <div class="total-price">
-                <table>
-                    <tr>
-                        <td>Subtotal</td>
-                        <td>$546</td>
-                    </tr>
-                    <tr>
-                        <td>Tax</td>
-                        <td>$456</td>
-                    </tr>
-                    <tr>
-                        <td>Total</td>
-                        <td>$200</td>
-                    </tr>
-                </table>
-            </div>
-
-        </div>
-        <!--------footer-->
-        <div class="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="footer-col-1">
-                        <h3>Download our app</h3>
-                        <p>Download App for Android and ios mobile phones</p>
-                        <div class="app-logo">
-                            <img src="images/google-play-and-apple-app-store-logos-22.png">
-                            
-                        </div>
-                    
-
-                    </div>
-                    <div class="footer-col-2">
-                        <img src="images/Screenshot_22-10-2025_114914_stock.adobe.com.jpeg" >
-                        <p>Our purpose is to Sustainably make the pleasure And
-                            benefits of comfortable wears
-                        </p>
-                        
-                    </div>
-                    <div class="footer-col-3">
-                        <h3>Useful links</h3>
-                        <ul>
-                            <li>coupons</li>
-                            <li>Blog post</li>
-                            <li>Return policy</li>
-                            <li>Join Afflicate</li>
-                        </ul>
-
-                    </div>
-                    <div class="footer-col-4">
-                        <h3>Follow us</h3>
-                        <ul>
-                            <li>Facebook</li>
-                            <li>instagram</li>
-                            <li>tiktok</li>
-                            <li>telegram</li>
-                        </ul>
-
-                    </div>
-                </div>
-                <hr>
-                <p class="Copyright">Copyright 2025</p>
+            <div id="cart-actions" style="margin-top:16px; display:none;">
+                <button id="clear-cart" class="btn">Clear cart</button>
+                <button id="checkout" class="btn">Checkout</button>
             </div>
         </div>
-        <!---------js for toogle menu-->
-        <script>
-            var MenuItems =document.getElementById("MenuItems");
-            MenuItems.style.maxHeight ="0px";
-            function menutoggle() {
-                if( MenuItems.style.maxHeight =="0px")
-            {
-                MenuItems.style.maxHeight ="200px"
-            }
-            else
-            {
-            MenuItems.style.maxHeight ="0px";
-            }
+    </div>
+
+    <script>
+    (function(){
+        function readCart(){ try{ return JSON.parse(localStorage.getItem('cart')||'[]'); }catch(e){ return []; } }
+        function writeCart(cart){ localStorage.setItem('cart', JSON.stringify(cart)); }
+        function formatPrice(n){ return '#' + (n || 0).toLocaleString(); }
+
+        function render(){
+            var cart = readCart();
+            var emptyMsg = document.getElementById('empty-msg');
+            var table = document.getElementById('cart-table');
+            var body = document.getElementById('cart-body');
+            var totalEl = document.getElementById('cart-total');
+            var actions = document.getElementById('cart-actions');
+
+            if(!cart || cart.length === 0){ emptyMsg.style.display = 'block'; table.style.display = 'none'; actions.style.display = 'none'; return; }
+            emptyMsg.style.display = 'none'; table.style.display = 'table'; actions.style.display = 'block';
+            body.innerHTML = '';
+            var total = 0;
+            cart.forEach(function(item, idx){
+                var tr = document.createElement('tr');
+                var tdProduct = document.createElement('td'); tdProduct.style.display = 'flex'; tdProduct.style.alignItems = 'center';
+                var img = document.createElement('img'); img.src = item.image || ''; img.style.width='60px'; img.style.marginRight='10px';
+                var name = document.createElement('div'); name.textContent = item.name;
+                tdProduct.appendChild(img); tdProduct.appendChild(name);
+
+                var tdPrice = document.createElement('td'); tdPrice.textContent = formatPrice(item.price);
+                var tdQty = document.createElement('td');
+                var qtyInput = document.createElement('input'); qtyInput.type='number'; qtyInput.min='1'; qtyInput.value = item.quantity || 1; qtyInput.style.width='60px';
+                qtyInput.addEventListener('change', function(){ var v = parseInt(qtyInput.value) || 1; item.quantity = v; cart[idx] = item; writeCart(cart); render(); updateBadge(); });
+                tdQty.appendChild(qtyInput);
+
+                var tdSub = document.createElement('td'); var subtotal = (item.price || 0) * (item.quantity || 1); tdSub.textContent = formatPrice(subtotal);
+                total += subtotal;
+
+                var tdRemove = document.createElement('td'); var rem = document.createElement('button'); rem.className = 'btn'; rem.textContent = 'Remove';
+                rem.addEventListener('click', function(){ cart.splice(idx,1); writeCart(cart); render(); updateBadge(); });
+                tdRemove.appendChild(rem);
+
+                tr.appendChild(tdProduct); tr.appendChild(tdPrice); tr.appendChild(tdQty); tr.appendChild(tdSub); tr.appendChild(tdRemove);
+                body.appendChild(tr);
+            });
+            totalEl.textContent = formatPrice(total);
         }
-        
 
-        </script>
-        </body>
-    </html>
+        function updateBadge(){
+            // update any cart-count element in this document (if present)
+            var countEl = document.getElementById('cart-count');
+            var cart = readCart(); var totalQty = cart.reduce(function(s,i){ return s + (i.quantity||0); }, 0);
+            if(countEl) countEl.textContent = totalQty;
+        }
+
+        document.getElementById('clear-cart').addEventListener('click', function(){ if(confirm('Clear cart?')){ writeCart([]); render(); updateBadge(); } });
+        document.getElementById('checkout').addEventListener('click', function(){ alert('Checkout placeholder — implement server-side checkout.'); });
+
+        render(); updateBadge();
+    })();
+    </script>
+</body>
+</html>
