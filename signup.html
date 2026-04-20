@@ -1,0 +1,117 @@
+/* store.js — lightweight client-side data store (localStorage)
+   For demo purposes only. Not secure for production.
+*/
+(function(global){
+  const USERS_KEY = 'nessafit_users_v1';
+  const ORDERS_KEY = 'nessafit_orders_v1';
+  const REVIEWS_KEY = 'nessafit_reviews_v1';
+  const SESSION_KEY = 'nessafit_session_v1';
+
+  function read(key){
+    try{ return JSON.parse(localStorage.getItem(key)) || []; }catch(e){ return []; }
+  }
+  function write(key, data){ localStorage.setItem(key, JSON.stringify(data)); }
+
+  function generateId(prefix){ return prefix + '_' + Date.now().toString(36) + '_' + Math.floor(Math.random()*9000+1000); }
+
+  // Users
+  function getUsers(){ return read(USERS_KEY); }
+  function saveUsers(users){ write(USERS_KEY, users); }
+  function createUser({name,email,password}){
+    const users = getUsers();
+    if(users.find(u => u.email.toLowerCase()===email.toLowerCase())){
+      throw new Error('Email already registered');
+    }
+    const user = { id: generateId('u'), name, email, password, createdAt: new Date().toISOString() };
+    users.push(user); saveUsers(users); return user;
+  }
+  function authenticate(email,password){
+    const u = getUsers().find(x => x.email.toLowerCase()===email.toLowerCase() && x.password===password);
+    if(u){
+      localStorage.setItem(SESSION_KEY, JSON.stringify({ userId: u.id }));
+      return u;
+    }
+    return null;
+  }
+  function signOut(){ localStorage.removeItem(SESSION_KEY); }
+  function getCurrentUser(){
+    try{
+      const s = JSON.parse(localStorage.getItem(SESSION_KEY));
+      if(!s || !s.userId) return null;
+      return getUsers().find(u => u.id === s.userId) || null;
+    }catch(e){ return null; }
+  }
+
+  // Orders
+  function getOrders(){ return read(ORDERS_KEY); }
+  function saveOrders(o){ write(ORDERS_KEY, o); }
+  function generateOrderNumber(){ return 'ORD' + (Math.floor(Math.random()*900000)+100000).toString(); }
+  function createOrder({userId, items, shippingAddress, email}){
+    const orders = getOrders();
+    const order = {
+      id: generateId('order'),
+      number: generateOrderNumber(),
+      userId: userId || null,
+      email: email || null,
+      items: items || [],
+      shippingAddress: shippingAddress || null,
+      status: 'received',
+      createdAt: new Date().toISOString(),
+      history: [{ when: new Date().toISOString(), status: 'received' }]
+    };
+    orders.unshift(order); saveOrders(orders); return order;
+  }
+  function getOrdersByUser(userId){ return getOrders().filter(o => o.userId === userId); }
+  function getOrderByNumber(number){ return getOrders().find(o => o.number === number) || null; }
+  function updateOrderStatus(orderId, status){
+    const orders = getOrders();
+    const ord = orders.find(o => o.id === orderId);
+    if(!ord) throw new Error('Order not found');
+    ord.status = status; ord.history = ord.history || [];
+    ord.history.push({ when: new Date().toISOString(), status });
+    saveOrders(orders);
+    return ord;
+  }
+
+  // Reviews
+  function getReviews(){ return read(REVIEWS_KEY); }
+  function saveReviews(r){ write(REVIEWS_KEY, r); }
+  function addReview({productId, userId, userName, rating, comment}){
+    const r = getReviews();
+    const rev = { id: generateId('rev'), productId, userId: userId||null, userName: userName||'Guest', rating: Number(rating)||0, comment: comment||'', createdAt: new Date().toISOString() };
+    r.unshift(rev); saveReviews(r); return rev;
+  }
+  function getReviewsForProduct(productId){ return getReviews().filter(x => x.productId === productId); }
+
+  // Seed helper (safe: only seeds when store empty)
+  function seedDemoData(){
+    if(getUsers().length===0){
+      saveUsers([
+        { id: 'u_admin', name: 'Admin', email: 'admin@example.com', password: 'admin123', createdAt: new Date().toISOString() },
+        { id: 'u_jane', name: 'Jane Doe', email: 'jane@example.com', password: 'password', createdAt: new Date().toISOString() }
+      ]);
+    }
+    if(getOrders().length===0){
+      createOrder({ userId: 'u_jane', email: 'jane@example.com', items: [{ id: 'tee-001', qty: 1, title: 'Classic Black Tee' }], shippingAddress: '123 Demo Street' });
+      createOrder({ userId: null, email: 'guest@example.com', items: [{ id: 'beanie-001', qty: 2, title: 'Classic Beanie' }], shippingAddress: 'Guest Address' });
+    }
+    if(getReviews().length===0){
+      saveReviews([{ id: generateId('rev'), productId: 'tee-001', userId: 'u_jane', userName: 'Jane Doe', rating: 5, comment: 'Loved it!', createdAt: new Date().toISOString() }]);
+    }
+  }
+
+  // expose API
+  global.Store = {
+    // users
+    getUsers, createUser, authenticate, getCurrentUser, signOut,
+    // orders
+    getOrders, createOrder, getOrdersByUser, getOrderByNumber, getOrderById:getOrderByNumber, updateOrderStatus,
+    // reviews
+    getReviews, addReview, getReviewsForProduct,
+    // utils
+    seedDemoData
+  };
+
+  // seed quickly on load for demo
+  try{ seedDemoData(); }catch(e){}
+})(window);

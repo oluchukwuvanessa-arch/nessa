@@ -1,98 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Your Cart - Nessa's Shop</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Shopping Cart - Nessa's Fit">
+    <meta name="theme-color" content="#ff523b">
+    <meta name="color-scheme" content="light dark">
+    <title>Shopping Cart | Nessa's Fit</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Your Cart</h1>
-        <div id="cart-root" class="small-container cart-page">
-            <p id="empty-msg">Your cart is empty.</p>
-            <table id="cart-table" style="width:100%; display:none; border-collapse: collapse;">
-                <thead>
-                    <tr>
-                        <th style="text-align:left">Product</th>
-                        <th>Price</th>
-                        <th>Qty</th>
-                        <th>Subtotal</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody id="cart-body"></tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="3" style="text-align:right">Total:</td>
-                        <td id="cart-total">#0</td>
-                        <td></td>
-                    </tr>
-                </tfoot>
-            </table>
-            <div id="cart-actions" style="margin-top:16px; display:none;">
-                <button id="clear-cart" class="btn">Clear cart</button>
-                <button id="checkout" class="btn">Checkout</button>
+    <header class="site-header" role="banner">
+        <div class="header__nav" role="navigation" aria-label="Primary">
+            <div class="navbar">
+                <a href="index.html" class="navbar__logo" aria-label="Nessa's Fit home">
+                    <img src="images/Screenshot_22-10-2025_114914_stock.adobe.com.jpeg" width="125" height="auto" alt="Nessa's Fit logo">
+                </a>
+                <nav class="navbar__menu" id="primary-navigation" aria-label="Primary navigation">
+                    <ul class="navbar__list">
+                        <li class="navbar__item"><a href="index.html" class="navbar__link">Home</a></li>
+                        <li class="navbar__item"><a href="product.html" class="navbar__link">Products</a></li>
+                        <li class="navbar__item"><a href="about.html" class="navbar__link">About</a></li>
+                        <li class="navbar__item"><a href="contact.html" class="navbar__link">Contact</a></li>
+                        <li class="navbar__item"><a href="login.html" class="navbar__link">Sign In</a></li>
+                    </ul>
+                </nav>
+                <a href="cart.html" class="cart-link active-link" aria-label="View shopping cart">
+                    <img src="images/Screenshot_22-10-2025_115018_www.bing.com.jpeg" width="30" height="30" alt="Cart icon">
+                    <span class="cart-count" id="cart-count" aria-hidden="true">0</span>
+                </a>
+                <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                    <img src="images/icon.jpg" alt="" aria-hidden="true">
+                </button>
             </div>
         </div>
-    </div>
+        <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
+    </header>
 
-    <script>
-    (function(){
-        function readCart(){ try{ return JSON.parse(localStorage.getItem('cart')||'[]'); }catch(e){ return []; } }
-        function writeCart(cart){ localStorage.setItem('cart', JSON.stringify(cart)); }
-        function formatPrice(n){ return '#' + (n || 0).toLocaleString(); }
+    <main>
+        <section class="cart-section">
+            <div class="container">
+                <div class="cart-header">
+                    <h1>Shopping Cart</h1>
+                    <p class="breadcrumb"><a href="index.html">Home</a> / Shopping Cart</p>
+                </div>
 
-        function render(){
-            var cart = readCart();
-            var emptyMsg = document.getElementById('empty-msg');
-            var table = document.getElementById('cart-table');
-            var body = document.getElementById('cart-body');
-            var totalEl = document.getElementById('cart-total');
-            var actions = document.getElementById('cart-actions');
+                <div id="empty-cart" class="empty-cart-state">
+                    <i class="fa-solid fa-shopping-cart" aria-hidden="true"></i>
+                    <h2>Your Cart is Empty</h2>
+                    <p>Explore our collections and add some amazing items to your cart!</p>
+                    <a href="product.html" class="btn btn--primary">Continue Shopping</a>
+                </div>
 
-            if(!cart || cart.length === 0){ emptyMsg.style.display = 'block'; table.style.display = 'none'; actions.style.display = 'none'; return; }
-            emptyMsg.style.display = 'none'; table.style.display = 'table'; actions.style.display = 'block';
-            body.innerHTML = '';
-            var total = 0;
-            cart.forEach(function(item, idx){
-                var tr = document.createElement('tr');
-                var tdProduct = document.createElement('td'); tdProduct.style.display = 'flex'; tdProduct.style.alignItems = 'center';
-                var img = document.createElement('img'); img.src = item.image || ''; img.style.width='60px'; img.style.marginRight='10px';
-                var name = document.createElement('div'); name.textContent = item.name;
-                tdProduct.appendChild(img); tdProduct.appendChild(name);
+                <div id="cart-content" class="cart-content" style="display: none;">
+                    <div class="cart-items">
+                        <div class="cart-items-header">
+                            <div>Product</div>
+                            <div>Price</div>
+                            <div>Quantity</div>
+                            <div>Subtotal</div>
+                            <div></div>
+                        </div>
+                        <div id="cart-items-list" class="cart-items-list"></div>
+                    </div>
 
-                var tdPrice = document.createElement('td'); tdPrice.textContent = formatPrice(item.price);
-                var tdQty = document.createElement('td');
-                var qtyInput = document.createElement('input'); qtyInput.type='number'; qtyInput.min='1'; qtyInput.value = item.quantity || 1; qtyInput.style.width='60px';
-                qtyInput.addEventListener('change', function(){ var v = parseInt(qtyInput.value) || 1; item.quantity = v; cart[idx] = item; writeCart(cart); render(); updateBadge(); });
-                tdQty.appendChild(qtyInput);
+                    <aside class="cart-summary">
+                        <div class="summary-card">
+                            <h3>Order Summary</h3>
+                            <div class="summary-row">
+                                <span>Subtotal:</span>
+                                <span id="subtotal-amount">₦0</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Tax (10%):</span>
+                                <span id="tax-amount">₦0</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Shipping:</span>
+                                <span id="shipping-amount">₦0</span>
+                            </div>
+                            <hr>
+                            <div class="summary-row total">
+                                <span>Total:</span>
+                                <span id="total-amount">₦0</span>
+                            </div>
+                            <button class="btn--checkout" id="checkout-btn">Proceed to Checkout</button>
+                            <a href="product.html" class="btn btn--secondary" style="display: inline-block; text-align: center; text-decoration: none; margin-top: 0.5rem;">Continue Shopping</a>
+                        </div>
 
-                var tdSub = document.createElement('td'); var subtotal = (item.price || 0) * (item.quantity || 1); tdSub.textContent = formatPrice(subtotal);
-                total += subtotal;
+                        <div class="promo-card">
+                            <h4>Promo Code</h4>
+                            <form id="promo-form" class="promo-form">
+                                <input type="text" id="promo-input" placeholder="Enter promo code" maxlength="20">
+                                <button type="submit" class="btn--promo">Apply</button>
+                            </form>
+                            <p class="promo-hint" id="promo-message"></p>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </main>
 
-                var tdRemove = document.createElement('td'); var rem = document.createElement('button'); rem.className = 'btn'; rem.textContent = 'Remove';
-                rem.addEventListener('click', function(){ cart.splice(idx,1); writeCart(cart); render(); updateBadge(); });
-                tdRemove.appendChild(rem);
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__grid">
+                <section class="footer__col">
+                    <img src="images/Screenshot_22-10-2025_114914_stock.adobe.com.jpeg" alt="Nessa's Fit" style="width: 140px; margin-bottom: 1rem;">
+                    <p>Sustainably crafted fashion for comfortable living. Quality meets style at Nessa's Fit.</p>
+                </section>
+                <section class="footer__col">
+                    <h3>Useful Links</h3>
+                    <ul class="footer__links">
+                        <li><a href="#coupons">Coupons</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="#returns">Return Policy</a></li>
+                        <li><a href="#affiliate">Become an Affiliate</a></li>
+                    </ul>
+                </section>
+                <section class="footer__col">
+                    <h3>Follow Us</h3>
+                    <div class="footer__social">
+                        <a href="https://facebook.com" rel="noopener noreferrer" aria-label="Follow us on Facebook">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="https://instagram.com" rel="noopener noreferrer" aria-label="Follow us on Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="https://tiktok.com" rel="noopener noreferrer" aria-label="Follow us on TikTok">
+                            <i class="fa-brands fa-tiktok"></i>
+                        </a>
+                        <a href="https://telegram.org" rel="noopener noreferrer" aria-label="Message us on Telegram">
+                            <i class="fa-brands fa-telegram"></i>
+                        </a>
+                    </div>
+                </section>
+                <section class="footer__col">
+                    <h3>Contact Info</h3>
+                    <ul class="footer__contact">
+                        <li><a href="mailto:hello@nessasfit.com"><i class="fa-solid fa-envelope"></i> hello@nessasfit.com</a></li>
+                        <li><a href="tel:+2348012345678"><i class="fa-solid fa-phone"></i> +234 (0)801 234 5678</a></li>
+                        <li><address style="display: flex; gap: 0.5rem;"><i class="fa-solid fa-location-dot"></i> <span>123 Fashion Street, Lagos, Nigeria</span></address></li>
+                    </ul>
+                </section>
+            </div>
+            <hr>
+            <p class="footer__copyright">&copy; 2026 Nessa's Fit. All rights reserved. | <a href="#privacy">Privacy Policy</a> | <a href="#terms">Terms of Service</a></p>
+        </div>
+    </footer>
 
-                tr.appendChild(tdProduct); tr.appendChild(tdPrice); tr.appendChild(tdQty); tr.appendChild(tdSub); tr.appendChild(tdRemove);
-                body.appendChild(tr);
-            });
-            totalEl.textContent = formatPrice(total);
-        }
-
-        function updateBadge(){
-            // update any cart-count element in this document (if present)
-            var countEl = document.getElementById('cart-count');
-            var cart = readCart(); var totalQty = cart.reduce(function(s,i){ return s + (i.quantity||0); }, 0);
-            if(countEl) countEl.textContent = totalQty;
-        }
-
-        document.getElementById('clear-cart').addEventListener('click', function(){ if(confirm('Clear cart?')){ writeCart([]); render(); updateBadge(); } });
-        document.getElementById('checkout').addEventListener('click', function(){ alert('Checkout placeholder — implement server-side checkout.'); });
-
-        render(); updateBadge();
-    })();
-    </script>
+    <script src="store.js"></script>
+    <script src="cart.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

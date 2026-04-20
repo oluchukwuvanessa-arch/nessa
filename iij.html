@@ -1,17 +1,43 @@
+const menuToggle = document.getElementById('menuToggle');
+const menuClose = document.getElementById('menuClose');
+const navLinks = document.getElementById('navLinks');
+const overlay = document.getElementById('overlay');
+
+// Function to Open Menu
+menuToggle.addEventListener('click', () => {
+    navLinks.classList.add('active');
+    overlay.classList.add('active');
+});
+
+// Function to Close Menu
+const closeMenu = () => {
+    navLinks.classList.remove('active');
+    overlay.classList.remove('active');
+};
+
+menuClose.addEventListener('click', closeMenu);
+overlay.addEventListener('click', closeMenu);
+
+// Add scroll effect to header
+window.addEventListener('scroll', () => {
+    const header = document.querySelector('.site-header');
+    if (window.scrollY > 50) {
+        header.style.padding = '10px 0';
+        header.style.background = 'rgba(255, 255, 255, 0.95)';
+    } else {
+        header.style.padding = '20px 0';
+        header.style.background = 'rgba(255, 255, 255, 0.8)';
+    }
+});
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Nessa's Fit - Premium fashion and apparel for your lifestyle">
-    <meta name="keywords" content="fashion, apparel, clothing, online store, Nessa's Fit">
     <meta name="theme-color" content="#ff523b">
     <meta name="color-scheme" content="light dark">
-    <meta property="og:title" content="Nessa's Fit | Premium Fashion & Apparel">
-    <meta property="og:description" content="Explore premium fashion, accessories, and stylish apparel at Nessa's Fit.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://your-site.example.com/">
-    <meta property="og:image" content="images/og-image.jpg">
     <title>Nessa's Fit | Premium Fashion & Apparel</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css">
@@ -23,9 +49,9 @@
                 <a href="index.html" class="navbar__logo" aria-label="Nessa's Fit home">
                     <img src="images/Screenshot_22-10-2025_114914_stock.adobe.com.jpeg" width="125" height="auto" alt="Nessa's Fit logo">
                 </a>
-                <nav class="navbar__menu" id="primary-navigation" aria-label="Primary navigation">
-                    <ul class="navbar__list">
-                        <li class="navbar__item"><a href="index.html" class="navbar__link active-link" aria-current="page">Home</a></li>
+                <nav class="navbar__menu">
+                    <ul class="navbar__list" id="MenuItems">
+                        <li class="navbar__item"><a href="index.html" class="navbar__link">Home</a></li>
                         <li class="navbar__item"><a href="product.html" class="navbar__link">Products</a></li>
                         <li class="navbar__item"><a href="about.html" class="navbar__link">About</a></li>
                         <li class="navbar__item"><a href="contact.html" class="navbar__link">Contact</a></li>
@@ -41,7 +67,6 @@
                 </button>
             </div>
         </div>
-        <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
     </header>
 
     <main>
@@ -301,8 +326,13 @@
         <div class="container">
             <div class="footer__grid">
                 <section class="footer__col">
+                    <h3>Download Our App</h3>
+                    <p>Get the app on your phone for exclusive deals and early access.</p>
+                    <img src="images/google-play-and-apple-app-store-logos-22.png" alt="App store logos">
+                </section>
+                <section class="footer__col">
                     <img src="images/Screenshot_22-10-2025_114914_stock.adobe.com.jpeg" alt="Nessa's Fit" style="width: 140px; margin-bottom: 1rem;">
-                    <p>Sustainably crafted fashion for comfortable living. Quality meets style at Nessa's Fit.</p>
+                    <p>Sustainably crafted fashion for comfortable living. Quality meets style.</p>
                 </section>
                 <section class="footer__col">
                     <h3>Useful Links</h3>
@@ -315,27 +345,11 @@
                 </section>
                 <section class="footer__col">
                     <h3>Follow Us</h3>
-                    <div class="footer__social">
-                        <a href="https://facebook.com" rel="noopener noreferrer" aria-label="Follow us on Facebook">
-                            <i class="fa-brands fa-facebook-f"></i>
-                        </a>
-                        <a href="https://instagram.com" rel="noopener noreferrer" aria-label="Follow us on Instagram">
-                            <i class="fa-brands fa-instagram"></i>
-                        </a>
-                        <a href="https://tiktok.com" rel="noopener noreferrer" aria-label="Follow us on TikTok">
-                            <i class="fa-brands fa-tiktok"></i>
-                        </a>
-                        <a href="https://telegram.org" rel="noopener noreferrer" aria-label="Message us on Telegram">
-                            <i class="fa-brands fa-telegram"></i>
-                        </a>
-                    </div>
-                </section>
-                <section class="footer__col">
-                    <h3>Contact Info</h3>
-                    <ul class="footer__contact">
-                        <li><a href="mailto:hello@nessasfit.com"><i class="fa-solid fa-envelope"></i> hello@nessasfit.com</a></li>
-                        <li><a href="tel:+2348012345678"><i class="fa-solid fa-phone"></i> +234 (0)801 234 5678</a></li>
-                        <li><address style="display: flex; gap: 0.5rem;"><i class="fa-solid fa-location-dot"></i> <span>123 Fashion Street, Lagos, Nigeria</span></address></li>
+                    <ul class="footer__links">
+                        <li><a href="https://facebook.com" rel="noopener noreferrer">Facebook</a></li>
+                        <li><a href="https://instagram.com" rel="noopener noreferrer">Instagram</a></li>
+                        <li><a href="https://tiktok.com" rel="noopener noreferrer">TikTok</a></li>
+                        <li><a href="https://telegram.org" rel="noopener noreferrer">Telegram</a></li>
                     </ul>
                 </section>
             </div>

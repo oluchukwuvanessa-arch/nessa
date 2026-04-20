@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Your Nessa's Fit account - View orders and track purchases">
+  <meta name="theme-color" content="#ff523b">
+  <title>My Account — Nessa's Fit</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+      <a href="index.html" class="navbar__logo" aria-label="Nessa's Fit home">
+        <img src="images/Screenshot_22-10-2025_114914_stock.adobe.com.jpeg" width="125" alt="Nessa's Fit">
+      </a>
+      <ul class="navbar__menu" id="MenuItems">
+        <li><a href="index.html" class="navbar__link">Home</a></li>
+        <li><a href="product.html" class="navbar__link">Products</a></li>
+        <li><a href="about.html" class="navbar__link">About</a></li>
+        <li><a href="contact.html" class="navbar__link">Contact</a></li>
+        <li><a href="login.html" class="navbar__link">Sign In</a></li>
+      </ul>
+      <a href="cart.html" class="cart-link" aria-label="Shopping cart">
+        <img src="images/Screenshot_22-10-2025_115018_www.bing.com.jpeg" width="30" height="30" alt="Cart">
+        <span class="cart-count" id="cart-count" aria-hidden="true">0</span>
+      </a>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <img src="images/icon.jpg" alt="">
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container" style="max-width: 900px; margin: var(--spacing-2xl) auto;">
+      <section>
+        <h1>My Account</h1>
+        <div id="accountInfo" class="panel"></div>
+      </section>
+
+      <section style="margin-top: var(--spacing-lg);">
+        <h2>Your Orders</h2>
+        <div id="ordersList" class="orders-table"></div>
+      </section>
+
+      <section style="margin-top: var(--spacing-lg);">
+        <h2>Track Order</h2>
+        <form id="trackForm" style="display: flex; gap: var(--spacing-md); align-items: flex-end;">
+          <div style="flex: 1;">
+            <label for="orderNumber" style="display: block; margin-bottom: var(--spacing-sm); font-weight: 600;">Order Number</label>
+            <input
+              id="orderNumber"
+              name="number"
+              type="text"
+              class="input"
+              placeholder="e.g., ORD123456"
+              required
+              style="width: 100%;"
+            />
+          </div>
+          <button type="submit" class="btn btn--primary">Track</button>
+        </form>
+        <div id="trackResult" class="alert" role="alert" style="margin-top: var(--spacing-md); display: none;"></div>
+      </section>
+
+      <section style="margin-top: var(--spacing-lg);">
+        <p>
+          <a href="index.html" style="margin-right: var(--spacing-lg);">← Continue shopping</a> ·
+          <a href="#" id="signOutLink" style="margin-left: var(--spacing-lg);">Sign out</a>
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="footer__copyright">&copy; 2026 Nessa's Fit. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="store.js"></script>
+  <script src="account.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
+
+
